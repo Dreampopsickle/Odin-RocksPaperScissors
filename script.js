@@ -18,10 +18,10 @@ function getComputerChoice() {
 // Player chooses Rock, Paper, or Scissors
 function getPlayerChoice(playerSelection) {
     playerSelection = prompt('Rock, Paper, or Scissors?')
-    playerSelection.toUpperCase();
+    playerSelection = playerSelection.toUpperCase();
     if (!playerSelection || typeof playerSelection !== 'string') {
         return "Input invalid! Please choose Rock, Paper or Scissors.";
-    } else {}
+    } 
     
     return playerSelection;
 }
