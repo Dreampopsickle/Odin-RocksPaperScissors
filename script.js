@@ -36,11 +36,11 @@ function gameRound(playerSelection) {
         result = `You win! ${playerChoice} beats ${computerSelection}!`;
     
     } else if (
-        (playerChoice === "PAPER" && computerSelection === "SCISSORS") || 
-        (playerChoice === "SCISSORS" && computerSelection === "ROCK") ||
-        (playerChoice === "ROCK" && computerSelection === "PAPER") || 
-    ) {
-        result = `You lost! ${playerChoice} beats ${computerChoice}!`;
+        (playerChoice === "SCISSORS" && computerSelection === "ROCK") || 
+        (playerChoice === "ROCK" && computerSelection === "PAPER") ||
+        (playerChoice === "PAPER" && computerSelection === "SCISSORS") 
+    )  {
+        result = `You lost! ${computerSelection} beats ${playerChoice}!`;
     
     } else {
         result = "Something went amiss here, try again!";
