@@ -14,16 +14,32 @@ function getComputerChoice() {
     return choice;
     
 }
- 
 
-// The logic for a round of the game
-function singleRound(playerSelection) {
-    // Make sure input is Rock, Paper, or Scissors
+// Player chooses Rock, Paper, or Scissors
+function getPlayerChoice(playerSelection) {
+    playerSelection = prompt('Rock, Paper, or Scissors?')
+    playerSelection.toUpperCase();
     if (!playerSelection || typeof playerSelection !== 'string') {
         return "Input invalid! Please choose Rock, Paper or Scissors.";
-    }
+    } else {}
+    
+    return playerSelection;
+}
+
+ 
+
+
+
+
+
+
+
+
+// The logic for a round of the game
+function singleRound() {
+    // Player makes a play
+    let playerChoice = getPlayerChoice();
     // Computer makes a play
-    let playerChoice = playerSelection.toUpperCase();
     let computerSelection = getComputerChoice();
     let result;
 
@@ -63,7 +79,7 @@ function game() {
     let computerPoints = 0;
 
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Rock, Paper, or Scissors'); 
+        let playerSelection = prompt('Rock, Paper, or Scissors?'); 
         let gameResult = singleRound(playerSelection);
         // Tracking point collection
         if (gameResult === 0) {
