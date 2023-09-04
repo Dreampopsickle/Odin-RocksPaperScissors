@@ -71,9 +71,9 @@ function game() {
             computerPoints += 1;
         } else if (gameResult === 1) {
             humanPoints += 1;
-        } else {
+        } else if (gameResult === 2) {
             computerPoints += 1;
-        }
+        } 
     }
     //Final game results and declaration of winner!
     if (humanPoints === computerPoints) {
