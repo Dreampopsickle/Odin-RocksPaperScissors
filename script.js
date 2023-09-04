@@ -30,7 +30,7 @@ function singleRound(playerSelection) {
     // If both answers are the same, it's a tie
     if (playerChoice === computerSelection) {
         console.log("It's a tie!");
-        result = 0;
+        result = 0; //The result of a tie
     //Result of a human win, computer loss
     } else if (
         (playerChoice === "ROCK" && computerSelection === "SCISSORS") || 
@@ -38,7 +38,7 @@ function singleRound(playerSelection) {
         (playerChoice === "SCISSORS" && computerSelection === "PAPER") 
     ) {
         console.log(`You win! ${playerChoice} beats ${computerSelection}!`);
-        result = 1;
+        result = 1; //the result of a human win
     // Result of a computer win, human loss
     } else if (
         (playerChoice === "SCISSORS" && computerSelection === "ROCK") || 
@@ -46,7 +46,7 @@ function singleRound(playerSelection) {
         (playerChoice === "PAPER" && computerSelection === "SCISSORS") 
     )  {
         console.log(`You lost! ${computerSelection} beats ${playerChoice}!`);
-        result = 2;
+        result = 2; //the result of a computer win
     // Result of an error
     } else {
        console.log("Something went amiss here, try just entering Rock, Paper, or Scissors!");
