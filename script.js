@@ -73,7 +73,10 @@ function game() {
             humanPoints += 1;
         } else if (gameResult === 2) {
             computerPoints += 1;
-        } 
+        } else {
+            console.log('Invalid input, skipping this round');
+            continue;
+        }
     }
     //Final game results and declaration of winner!
     if (humanPoints === computerPoints) {
@@ -81,7 +84,7 @@ function game() {
     } else if (humanPoints > computerPoints) {
         console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. Congrats! You Win!!!!`);
     } else {
-        console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. You/'ve lost, Computer wins!!!!`);
+        console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. You've lost, Computer wins!!!!`);
     }
 }
 
