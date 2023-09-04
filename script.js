@@ -18,26 +18,35 @@ function getComputerChoice() {
 // Player chooses Rock, Paper, or Scissors
 function getPlayerChoice(playerSelection) {
     playerSelection = prompt('Rock, Paper, or Scissors?')
-    playerSelection = playerSelection.toUpperCase();
-    if (!playerSelection || typeof playerSelection !== 'string') {
-        return "Input invalid! Please choose Rock, Paper or Scissors.";
-    } 
+    if (!playerSelection) {
+        return null;
+    }
     
-    return playerSelection;
+   return playerSelection.toUpperCase();
+    
+    
 }
 
  // The logic for a round of the game
 function singleRound() {
     // Player makes a play
     let playerChoice = getPlayerChoice();
+    if (!playerChoice) {
+        console.log('No choice made, skipping this round');
+        return null;
+    }
     // Computer makes a play
     let computerSelection = getComputerChoice();
+    //Tie, human or cumputer win results
+    const tie = 0;
+    const humanWin = 1;
+    const compWin = 2;
     let result;
 
     // If both answers are the same, it's a tie
     if (playerChoice === computerSelection) {
         console.log("It's a tie!");
-        result = 0; //The result of a tie
+        result = tie; //The result of a tie
     //Result of a human win, computer loss
     } else if (
         (playerChoice === "ROCK" && computerSelection === "SCISSORS") || 
@@ -45,7 +54,7 @@ function singleRound() {
         (playerChoice === "SCISSORS" && computerSelection === "PAPER") 
     ) {
         console.log(`You win! ${playerChoice} beats ${computerSelection}!`);
-        result = 1; //the result of a human win
+        result = humanWin; //the result of a human win
     // Result of a computer win, human loss
     } else if (
         (playerChoice === "SCISSORS" && computerSelection === "ROCK") || 
@@ -53,7 +62,7 @@ function singleRound() {
         (playerChoice === "PAPER" && computerSelection === "SCISSORS") 
     )  {
         console.log(`You lost! ${computerSelection} beats ${playerChoice}!`);
-        result = 2; //the result of a computer win
+        result = compWin; //the result of a computer win
     // Result of an error
     } else {
        console.log("Something went amiss here, try just entering Rock, Paper, or Scissors!");
