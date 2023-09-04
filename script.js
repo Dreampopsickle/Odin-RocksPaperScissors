@@ -26,16 +26,7 @@ function getPlayerChoice(playerSelection) {
     return playerSelection;
 }
 
- 
-
-
-
-
-
-
-
-
-// The logic for a round of the game
+ // The logic for a round of the game
 function singleRound() {
     // Player makes a play
     let playerChoice = getPlayerChoice();
@@ -79,8 +70,8 @@ function game() {
     let computerPoints = 0;
 
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Rock, Paper, or Scissors?'); 
-        let gameResult = singleRound(playerSelection);
+        // Sets up tracker system
+        let gameResult = singleRound();
         // Tracking point collection
         if (gameResult === 0) {
             humanPoints += 1;
