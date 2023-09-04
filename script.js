@@ -17,7 +17,7 @@ function getComputerChoice() {
  
 
 // The logic for a round of the game
-function gameRound(playerSelection, getComputerChoice()) {
+function gameRound(playerSelection) {
     
 
     let playerChoice = playerSelection.toUpperCase();
