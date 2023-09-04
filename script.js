@@ -10,44 +10,42 @@ function getComputerChoice() {
         choice = 'SCISSORS';
         
     };
-
+    
     return choice;
     
-}
-
-// The comouter's ability to choose is set in stone
-let computerSelection = getComputerChoice();
+};
  
 
 // The logic for a round of the game
-function gameRound(playerSelection, computerSelection) {
-    let playerChoice = playerSelection.toUpperCase()
+function gameRound(playerSelection, getComputerChoice()) {
+    
+
+    let playerChoice = playerSelection.toUpperCase();
+    let computerSelection = getComputerChoice();
     let result;
     
     
     if (playerChoice === computerSelection) {
         result = "It's a tie!";
     
-    } else if (playerChoice === "ROCK" && computerSelection === "PAPER") {
-        result = "You lose! Paper beats Rock!";
+    } else if (
+        (playerChoice === "ROCK" && computerSelection === "SCISSORS") || 
+        (playerChoice === "PAPER" && computerSelection === "ROCK") || 
+        (playerChoice === "SCISSORS" && computerSelection === "PAPER") 
+    ) {
+        result = `You win! ${playerChoice} beats ${computerSelection}!`;
     
-    } else if (playerChoice === "ROCK" && computerSelection === "SCISSORS") {
-        result = "You win! Rock beats Scissors!";
-    
-    } else if (playerChoice === "PAPER" && computerSelection === "SCISSORS") {
-        result = "You lost! Scissors beats Paper!";
-    
-    } else if (playerChoice === "PAPER" && computerSelection === "ROCK") {
-        result = "You Win! Paper beats Rock!";
-    
-    } else if (playerChoice === "SCISSORS" && computerSelection === "ROCK") {
-        result = "You lost! Rock beats Scissors";
-    
-    } else if (playerChoice === "SCISSORS" && computerSelection === "PAPER") {
-        result = "You win! Scissors beat Paper!";
+    } else if (
+        (playerChoice === "PAPER" && computerSelection === "SCISSORS") || 
+        (playerChoice === "SCISSORS" && computerSelection === "ROCK") ||
+        (playerChoice === "ROCK" && computerSelection === "PAPER") || 
+    ) {
+        result = `You lost! ${playerChoice} beats ${computerChoice}!`;
     
     } else {
-        result = "Something went amiss here, try again!"
+        result = "Something went amiss here, try again!";
     }
+
+    return result;
 
 };
