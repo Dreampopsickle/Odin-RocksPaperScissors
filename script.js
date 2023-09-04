@@ -13,7 +13,7 @@ function getComputerChoice() {
     
     return choice;
     
-};
+}
  
 
 // The logic for a round of the game
@@ -54,7 +54,7 @@ function singleRound(playerSelection) {
     // Gameplay Result
     return result;
 
-};
+}
 
 
 function game() {
