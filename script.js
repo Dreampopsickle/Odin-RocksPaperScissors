@@ -8,33 +8,42 @@ function getComputerChoice() {
         choice = 'PAPER';
     } else {
         choice = 'SCISSORS';
-        
     };
-    
     return choice;
+    // console.log('this works')
+
+
+    
+}// Player chooses Rock, Paper, or Scissors
+//Rock button
+const rockEl = document.getElementById('rock');
+rockEl.addEventListener('click', () => singleRound('ROCK'));
+//Paper button
+const paperEl = document.getElementById('paper');
+paperEl.addEventListener('click', () => singleRound('PAPER'));
+
+// Scissors Button
+const scissorsEl = document.getElementById('scissors');
+scissorsEl.addEventListener('click', () => singleRound('SCISSORS'));
+
+//resets the game with button
+const resetEl = document.getElementById('reset');
+resetEl.addEventListener('click', () => resetGame())
+function resetGame() {
+    let resultString = "";
+    const resetGameResultEl = document.getElementById('game');
+    humanPoints = 0;
+    computerPoints = 0;
+    resultDisplay(resultString);
+    resetGameResultEl.innerText = "";
+    updateScore();
+
     
 }
 
-// Player chooses Rock, Paper, or Scissors
-function getPlayerChoice(playerSelection) {
-    playerSelection = prompt('Rock, Paper, or Scissors?')
-    if (!playerSelection) {
-        return null;
-    }
-    
-   return playerSelection.toUpperCase();
-    
-    
-}
-
- // The logic for a round of the game
-function singleRound() {
+// The logic for a round of the game
+function singleRound(playerChoice) {
     // Player makes a play
-    let playerChoice = getPlayerChoice();
-    if (!playerChoice) {
-        console.log('No choice made, skipping this round');
-        return null;
-    }
     // Computer makes a play
     let computerSelection = getComputerChoice();
     //Tie, human or cumputer win results
@@ -42,18 +51,20 @@ function singleRound() {
     const humanWin = 1;
     const compWin = 2;
     let result;
+    let resultString;
 
     // If both answers are the same, it's a tie
     if (playerChoice === computerSelection) {
-        console.log("It's a tie!");
+        resultString = "It's a tie!";
         result = tie; //The result of a tie
-    //Result of a human win, computer loss
+    
+        //Result of a human win, computer loss
     } else if (
         (playerChoice === "ROCK" && computerSelection === "SCISSORS") || 
         (playerChoice === "PAPER" && computerSelection === "ROCK") || 
         (playerChoice === "SCISSORS" && computerSelection === "PAPER") 
     ) {
-        console.log(`You win! ${playerChoice} beats ${computerSelection}!`);
+        resultString = `You win! ${playerChoice} beats ${computerSelection}!`;
         result = humanWin; //the result of a human win
     // Result of a computer win, human loss
     } else if (
@@ -61,46 +72,62 @@ function singleRound() {
         (playerChoice === "ROCK" && computerSelection === "PAPER") ||
         (playerChoice === "PAPER" && computerSelection === "SCISSORS") 
     )  {
-        console.log(`You lost! ${computerSelection} beats ${playerChoice}!`);
+        resultString = `You lost! ${computerSelection} beats ${playerChoice}!`;
         result = compWin; //the result of a computer win
     // Result of an error
     } else {
-       console.log("Something went amiss here, try just entering Rock, Paper, or Scissors!");
+       resultString = "An error has occured";
     }
     // Gameplay Result
+    resultDisplay(resultString);
+    updateScore(result);
     return result;
+    
+    // console.log('round button works')
+}
+//point trackers
+let humanPoints = 0;
+let computerPoints = 0;
+//Displays the result in result div
+function resultDisplay(resultString) {
+    const resultEL = document.getElementById('result');
+    resultEL.innerText = resultString;
+}
+//point tracking system
+function updateScore(result) {
+    const tie = 0;
+    const humanWin = 1;
+    const computerWin = 2;
+    if (result === humanWin) {
+        humanPoints++;
+    } else if (result === computerWin) {
+        computerPoints++;
+    }
+    finalResultDisplay();
+    scoreDisplay();
 
+}
+//Displays score
+function scoreDisplay() {
+    const scoreEl = document.getElementById('score');
+    scoreEl.innerText = `Your Score: ${humanPoints} \n Computer Score: ${computerPoints}`;
+    
+}
+//Displays final game result
+function finalResultDisplay() {
+    const finalGameResult = document.getElementById('game');
+
+    if (humanPoints === 5 || computerPoints === 5) {
+        const winnerMessage = humanPoints === 5 ? "You win! Computer has lost" : "Computer has won. You lost!";
+        finalGameResult.innerText = winnerMessage ;
+        humanPoints = 0;
+        computerPoints = 0;
+        scoreDisplay();
+    }
 }
 
 
-function game() {
-    // Each game round plays 5 times
-    let humanPoints = 0;
-    let computerPoints = 0;
 
-    for (let i = 0; i < 5; i++) {
-        // Sets up tracker system
-        let gameResult = singleRound();
-        // Tracking point collection
-        if (gameResult === 0) {
-            humanPoints += 1;
-            computerPoints += 1;
-        } else if (gameResult === 1) {
-            humanPoints += 1;
-        } else if (gameResult === 2) {
-            computerPoints += 1;
-        } else {
-            console.log('Invalid input, skipping this round');
-            continue;
-        }
-    }
-    //Final game results and declaration of winner!
-    if (humanPoints === computerPoints) {
-        console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. It's a draw!`);
-    } else if (humanPoints > computerPoints) {
-        console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. Congrats! You Win!!!!`);
-    } else {
-        console.log(`After 5 rounds, You have ${humanPoints} points and Computer has ${computerPoints} points. You've lost, Computer wins!!!!`);
-    }
-}
+
+
 
